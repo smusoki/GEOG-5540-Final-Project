@@ -19,7 +19,7 @@
   <script src="https://d3js.org/queue.v1.min.js"></script>
   <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 
-  <title>An Animated Choropleth Map of U.S. Unemployment by County</title>
+  <title>An Animated Choropleth Map of Uganda's Rural Population by District</title>
 </head>
 
 <body>
@@ -58,8 +58,8 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>U.S. Unemployment 1990 - 2017 by County</h1>
-              <span class="post-meta">Posted on October 27, 2018</span>
+              <h1>Uganda's Rural Population 2015 - 2019 by District</h1>
+              <span class="post-meta">Posted on May 08, 2024</span>
             </div>
           </div>
         </div>
@@ -74,33 +74,33 @@
         <svg width="960" height="600"></svg>
         <h3 id="using-the-map">Using the Map</h3>
         <ol>
-          <li>The map will animate automatically to show unemployment rates by county from 1990 to 2017.</li>
+          <li>The map will animate automatically to show the rural population rates by district from 2015 to 2019.</li>
           <li>At any point, you can hover over the year label (on the right side) to stop the animation.  Moving your cursor horizontally over the year label will automatically update the year that is shown on the choropleth (move left to decrease the year, right to increase the year).</li>
-          <li>Hover over a county to see a tooltip providing the county name and the unemployment rate in that year.</li>
+          <li>Hover over a District to see a tooltip providing the district name and the rural population rate in that year.</li>
         </ol>
         <script>
 
-        var topoJSONFile = "data/us-10m.v1.json";
+        var topoJSONFile = "data/Ug_Dempgraphics.json";
         //enter the name of the feature or geometry collection within the topoJSONFile
         // for example, for the default dataset us.objects.counties, enter counties
         var featureCollection = "counties";
-        var csvFile = "data/unemployment_by_county_year.csv";
-        var attributeAlias = "Unemployment Rate (%)";
+        var csvFile = "data/Animatedmap_Data.csv";
+        var attributeAlias = "Rural Population Rate (%)";
 
         // enter the minimum and maximum values of the attribute over years
         // one legend is created based on equal interval classification for all years.
-        var min = 0, max = 20;
+        var min = 0, max = 711;
 
         //enter the beginning year or date/time of animation.
-        var beginTime = 1990, endTime = 2017;
+        var beginTime = 2015, endTime = 2019;
 
         // width and height of map frame
         var height = 600;
         var width = 960;
 
         // Find the abbreviations of color names from https://colorbrewer2.org/
-        var colors =  colorbrewer.Reds;
-        var numOfClasses = 9;
+        var colors =  colorbrewer.YlOrBr;
+        var numOfClasses = 5;
 
         //DO NOT CHANGE ANYTHING BELOW THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,9 +108,9 @@
 
         var svg = d3.select("svg");
         var path = d3.geoPath();
-        var format = d3.format("");
+        var format = d3.format(".1f");
 
-        var colorScheme = colors[9];
+        var colorScheme = colors[5];
         colorScheme.unshift("#eee");
 
         var color = d3.scaleQuantize()
